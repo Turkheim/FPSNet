@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://bfb1g4e6s57s"]
+
+[ext_resource type="Texture2D" uid="uid://bx6kp6q0nemyy" path="res://Turkheim/Assets/colorgrid.png" id="1_w1vym"]
+[ext_resource type="Texture2D" uid="uid://ynq1awq7b4bf" path="res://Turkheim/Assets/grid.png" id="2_uke3u"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vwj3b"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_gihbu"]
+sky_material = SubResource("ProceduralSkyMaterial_vwj3b")
+
+[sub_resource type="Environment" id="Environment_6xw2g"]
+background_mode = 2
+sky = SubResource("Sky_gihbu")
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ey1d0"]
+albedo_texture = ExtResource("1_w1vym")
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ihyg"]
+size = Vector3(100, 2, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mjv03"]
+albedo_texture = ExtResource("2_uke3u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbll1"]
+albedo_texture = ExtResource("2_uke3u")
+
+[sub_resource type="PrismMesh" id="PrismMesh_2ihyg"]
+left_to_right = 1.0
+size = Vector3(10, 2, 4)
+
+[node name="environment" type="Node3D" unique_id=1175158672]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1104910328]
+environment = SubResource("Environment_6xw2g")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=296092526]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="csg" type="Node3D" parent="." unique_id=2101919886]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="csg" unique_id=355268276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+material_override = SubResource("StandardMaterial3D_ey1d0")
+use_collision = true
+mesh = SubResource("BoxMesh_2ihyg")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="csg" unique_id=2142862639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2.5, -6)
+material_override = SubResource("StandardMaterial3D_mjv03")
+use_collision = true
+radius = 2.0
+height = 5.0
+sides = 24
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="csg" unique_id=525342460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2.5, 12)
+material_override = SubResource("StandardMaterial3D_mjv03")
+use_collision = true
+radius = 2.0
+height = 5.0
+sides = 24
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="csg" unique_id=1314060193]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2.5, -6)
+material_override = SubResource("StandardMaterial3D_mjv03")
+use_collision = true
+radius = 2.0
+height = 5.0
+sides = 24
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="csg" unique_id=976821624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2.5, 12)
+material_override = SubResource("StandardMaterial3D_mjv03")
+use_collision = true
+radius = 2.0
+height = 5.0
+sides = 24
+
+[node name="CSGBox3D" type="CSGBox3D" parent="csg" unique_id=834019481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 22)
+use_collision = true
+size = Vector3(4, 4, 4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="csg" unique_id=1635172089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 2, 3)
+use_collision = true
+size = Vector3(4, 4, 4)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="csg" unique_id=225356499]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 2, 0)
+use_collision = true
+size = Vector3(4, 4, 4)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="csg" unique_id=460331670]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, -18)
+material_override = SubResource("StandardMaterial3D_bbll1")
+use_collision = true
+size = Vector3(4, 4, 4)
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="csg" unique_id=1551456533]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 1, 13)
+use_collision = true
+mesh = SubResource("PrismMesh_2ihyg")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="csg" unique_id=1979280224]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 1, -6)
+use_collision = true
+mesh = SubResource("PrismMesh_2ihyg")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="csg" unique_id=123135029]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 34, 1, -9)
+use_collision = true
+mesh = SubResource("PrismMesh_2ihyg")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="csg" unique_id=1006267956]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 34, 1, 10)
+use_collision = true
+mesh = SubResource("PrismMesh_2ihyg")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="csg" unique_id=2141485555]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8.5, 1, -31.5)
+use_collision = true
+mesh = SubResource("PrismMesh_2ihyg")
+
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="csg" unique_id=2101380503]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.5, 1, -31.5)
+use_collision = true
+mesh = SubResource("PrismMesh_2ihyg")
+
+[node name="CSGMesh3D8" type="CSGMesh3D" parent="csg" unique_id=1967928180]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 10.5, 1, 31.5)
+use_collision = true
+mesh = SubResource("PrismMesh_2ihyg")
+
+[node name="CSGMesh3D9" type="CSGMesh3D" parent="csg" unique_id=880895067]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -8.5, 1, 31.5)
+use_collision = true
+mesh = SubResource("PrismMesh_2ihyg")

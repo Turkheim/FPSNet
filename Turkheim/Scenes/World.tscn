@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://dvi5dfprxkuog"]
+
+[ext_resource type="Script" uid="uid://dr01nccpi2kck" path="res://Turkheim/Scenes/world.gd" id="1_t0siw"]
+[ext_resource type="PackedScene" uid="uid://qb8c5iq45y3t" path="res://Turkheim/Assets/gun.glb" id="2_1wott"]
+[ext_resource type="PackedScene" uid="uid://bfb1g4e6s57s" path="res://Turkheim/Scenes/Environment.tscn" id="3_arbhh"]
+[ext_resource type="Texture2D" uid="uid://cxkdn6fiub6r7" path="res://addons/kenney_particle_pack/circle_05.png" id="4_t0siw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12dx5"]
+bg_color = Color(1, 0.060000002, 0.060000002, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ihyg"]
+bg_color = Color(0.75, 1, 0, 1)
+
+[node name="World" type="Node3D" unique_id=1530735125]
+script = ExtResource("1_t0siw")
+
+[node name="gun" parent="." unique_id=702055329 instance=ExtResource("2_1wott")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6768265, 4.160375, -17.980988)
+
+[node name="environment" parent="." unique_id=1175158672 instance=ExtResource("3_arbhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=104379071]
+
+[node name="MainMenu" type="PanelContainer" parent="CanvasLayer" unique_id=1079172786]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 448.0
+offset_top = 227.0
+offset_right = -448.0
+offset_bottom = -227.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu" unique_id=371147973]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer" unique_id=1120657875]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer" unique_id=1825616224]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer" unique_id=1162588757]
+layout_mode = 2
+text = "Host
+"
+
+[node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer" unique_id=2118241155]
+layout_mode = 2
+text = "Join
+"
+
+[node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer" unique_id=544565376]
+layout_mode = 2
+placeholder_text = "Enter Address to Join Here"
+alignment = 1
+
+[node name="HUD" type="Control" parent="CanvasLayer" unique_id=1817189953]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD" unique_id=1125647717]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.05, 0.05)
+pivot_offset = Vector2(576, 324)
+texture = ExtResource("4_t0siw")
+stretch_mode = 3
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD" unique_id=1901055605]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 293.0
+offset_top = 32.0
+offset_right = -293.0
+offset_bottom = -560.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_12dx5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2ihyg")
+max_value = 3.0
+value = 3.0
+show_percentage = false
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1487020048]
+_spawnable_scenes = PackedStringArray("uid://dbaim16j5xtgg")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
